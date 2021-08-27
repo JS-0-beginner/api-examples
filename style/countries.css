@@ -1,0 +1,18 @@
+#countries
+{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+button {
+  padding: 0 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.countries {
+  color: brown;
+  border: 2px solid sandybrown;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 20px;
+}
