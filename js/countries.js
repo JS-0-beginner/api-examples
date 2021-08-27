@@ -59,17 +59,31 @@ const displayCountryDetail = countryDetail =>
     // console.log(countryDetail);
     const everyCountryDetails = document.getElementById('country-details')
     const divDetail = document.createElement('div');
+    // divDetail.classList.add('flags');
     divDetail.innerHTML =
     `
-    <img src="${countryDetail.flag}">
+    <div style="display: inline-flex;">
 
-    
+             <div >
+                <img style="height: 250px; width: 400px;" src="${countryDetail.flag}">
+             </div>
+
+        <div style="margin-left: 60px;">               
     <h2>Name: ${countryDetail.name}</h2>
     <h3>Population: ${countryDetail.population}</h3>
     <h3>Demonym: ${countryDetail.demonym}</h3>
     <h3>Region: ${countryDetail.region}</h3>
+        </div>
 
+        </div>
+    
     `
     everyCountryDetails.appendChild(divDetail);
 }
 
+{/* <img width=400; height=250; src="${countryDetail.flag}">
+                
+                <h2>Name: ${countryDetail.name}</h2>
+                <h3>Population: ${countryDetail.population}</h3>
+                <h3>Demonym: ${countryDetail.demonym}</h3>
+                <h3>Region: ${countryDetail.region}</h3> */}
