@@ -1,41 +1,33 @@
 const loadCountries = () => 
 {
-    fetch('https://restcountries.eu/rest/v2/all')
+     fetch('https://restcountries.eu/rest/v2/all')
     .then(res => res.json())
-    .then(countries => displayCountries(countries) )
+    .then(countryNames => displayCountryNames(countryNames) )
 }
 
-const displayCountries = (countries) =>
+const displayCountryNames = (countryNames) =>
 {
     const allCountries = document.getElementById('countries');
+
+    //With Loop
     /* 
-    for(const country of countries)
+    for(const countryName of countryNames)
     {
 
     } 
     */
-    countries.forEach(country => 
+
+    //With Arrow Function
+    countryNames.forEach(countryName => 
         {
-            /* 
-            const hOne = document.createElement('h3');
-            hOne.classList.add('countries')
-            hOne.innerText = country.name;
-            allCountries.appendChild(hOne);
-
-            const paragraph = document.createElement('p');
-            paragraph.classList.add('countries')
-            paragraph.innerText = country.capital;
-            allCountries.appendChild(paragraph); 
-            */
-
             const div = document.createElement('div');
-            div.classList.add('countries');
+            div.classList.add('countryName-style');
             div.innerHTML =
             `
-            <h2>${country.name}</h2>
-            <h3>${country.capital}</h3>
-            <button onclick="loadCountryByName('${country.name}')">
-            Details
+            <h2>${countryName.name}</h2>
+            <h3>${countryName.capital}</h3>
+            <button onclick="loadCountryDetail_ByName('${countryName.name}')">
+            <h3>Details</h3> 
             </button> 
             `
             allCountries.appendChild(div)
@@ -44,16 +36,40 @@ const displayCountries = (countries) =>
         );
 }
 
-const loadCountryByName = name =>
+const loadCountryDetail_ByName = name =>
 {
     const url = `https://restcountries.eu/rest/v2/name/${name}`
     fetch(url)
     .then(res => res.json())
-    .then(data => displayCountryDetail(data[0]));
+
+    //array without function
+    // .then(countryDetail => console.log(countryDetail));
+    
+     //array with a function
+    // .then(countryDetail => displayCountryDetail(countryDetail));
+
+    //in array with a function
+    .then(countryDetail => displayCountryDetail(countryDetail[0])); 
+    
 
 }
 
-const displayCountryDetail = country => 
+const displayCountryDetail = countryDetail => 
 {
-    console.log(country);
+    // console.log(countryDetail);
+    const everyCountryDetails = document.getElementById('country-details')
+    const divDetail = document.createElement('div');
+    divDetail.innerHTML =
+    `
+    <img src="${countryDetail.flag}">
+
+    
+    <h2>Name: ${countryDetail.name}</h2>
+    <h3>Population: ${countryDetail.population}</h3>
+    <h3>Demonym: ${countryDetail.demonym}</h3>
+    <h3>Region: ${countryDetail.region}</h3>
+
+    `
+    everyCountryDetails.appendChild(divDetail);
 }
+

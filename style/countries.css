@@ -1,17 +1,18 @@
 #countries
 {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(5,1fr);
 }
 button {
+  line-height: 0%;
   padding: 0 20px;
   border-radius: 10px;
   cursor: pointer;
 }
-.countries {
+.countryName-style {
   color: brown;
   border: 2px solid sandybrown;
-  padding: 20px;
+  padding: 20px 20px 40px 20px;
   border-radius: 10px;
   text-align: center;
   margin: 20px;
