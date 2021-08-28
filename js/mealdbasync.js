@@ -39,13 +39,15 @@ const displaySearchedMeal = meals =>
     // searchedMeals.innerHTML = '';
     searchedMeals.textContent = '';
 
-    //Unknown Result Handling
     /* 
-    if()
+    //Unknown Result Handling
+     
+    if(meals == 0)
     {
-
-    }
-     */
+        
+    } 
+    */
+    
    
     meals.forEach( meal => 
     {
