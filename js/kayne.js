@@ -21,13 +21,18 @@ const displayQuotes = kaynequote => {
 
     const blockquotes = document.getElementById('quote');
     blockquotes.classList.add('quote')
+
+    //Direct with blockquote ( " " ) sign 
     blockquotes.innerText = `"${kaynequote.quote}"`;
 
-    /* const apiquotes = document.createElement('blockquote')
+    //this will also give blockquote ( " " ) sign
+    /* 
+    const apiquotes = document.createElement('blockquote')
     apiquotes.innerText = 
     `
     "${kaynequote.quote}"
     `
-    blockquotes.appendChild(apiquotes); */
+    blockquotes.appendChild(apiquotes); 
+    */
 
 }
