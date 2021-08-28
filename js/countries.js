@@ -26,8 +26,12 @@ const displayCountryNames = (countryNames) =>
             `
             <h2>${countryName.name}</h2>
             <h3>${countryName.capital}</h3>
-            <button onclick="loadCountryDetail_ByName('${countryName.name}')">
+
+            <button
+            onclick="loadCountryDetail_ByName('${countryName.name}')">
+
             <h3>Details</h3> 
+
             </button> 
             `
             allCountries.appendChild(div)
@@ -42,13 +46,13 @@ const loadCountryDetail_ByName = name =>
     fetch(url)
     .then(res => res.json())
 
-    //array without function
+    //check nested oject
     // .then(countryDetail => console.log(countryDetail));
     
-     //array with a function
+     //check nested oject
     // .then(countryDetail => displayCountryDetail(countryDetail));
 
-    //in array with a function
+    //check nested oject [0]
     .then(countryDetail => displayCountryDetail(countryDetail[0])); 
     
 
@@ -64,26 +68,21 @@ const displayCountryDetail = countryDetail =>
     `
     <div style="display: inline-flex; margin: 20px;">
 
-             <div >
-                <img style="height: 250px; width: 400px;" src="${countryDetail.flag}">
-             </div>
+    <div>
+        <img style="height: 250px; width: 400px;" src="${countryDetail.flag}">
+    </div>
 
-        <div style="margin-left: 60px;">               
-    <h2>Name:       ${countryDetail.name}             </h2>
+    <div style="margin-left: 60px;"> 
+
+    <h2>Name:       ${countryDetail.name}         </h2>
     <h2>Population: _ ${countryDetail.population} </h2>
-    <h2>Demonym:    _ ${countryDetail.demonym}       </h2>
-    <h2>Region:     _ ${countryDetail.region}         </h2>
-        </div>
+    <h2>Demonym:    _ ${countryDetail.demonym}    </h2>
+    <h2>Region:     _ ${countryDetail.region}     </h2>
+    </div>
 
-        </div>
+    </div>
     
     `
     everyCountryDetails.appendChild(divDetail);
 }
 
-{/* <img width=400; height=250; src="${countryDetail.flag}">
-                
-                <h2>Name: ${countryDetail.name}</h2>
-                <h3>Population: ${countryDetail.population}</h3>
-                <h3>Demonym: ${countryDetail.demonym}</h3>
-                <h3>Region: ${countryDetail.region}</h3> */}
