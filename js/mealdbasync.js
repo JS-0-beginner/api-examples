@@ -1,4 +1,4 @@
-const searchFood = () =>
+const searchFood = async () =>
 {
     const searchField = document.getElementById('search-field');
     const searchFieldText = searchField.value;
@@ -14,10 +14,18 @@ const searchFood = () =>
     {
       const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchFieldText}`;
     
+    //Regular Basic JS Form not ES6
+    const res = await fetch(url);
+    const data = await res.json();
+    displaySearchedMeal(data.meals);
+
+    /* 
       fetch(url)
     .then(response => response.json())
   //.then(data => console.log(data))
     .then(data => displaySearchedMeal(data.meals))
+    */   
+
     }
     
 
@@ -60,25 +68,36 @@ const displaySearchedMeal = meals =>
     });
 }
 
-const loadMealDetail = mealID =>
+//Async & Await
+const loadMealDetail = async mealID =>
 {
     // console.log(mealID);
+
     const url = 
     `
     https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}
     ` ;
+
+    //Regular Basic JS Form not ES6
+    const res = await fetch(url);
+    const data = await res.json();
+    displayMealDetail(data.meals[0]);
+    /*
     fetch(url)
-  .then(response => response.json())
-  .then(data => displayMealDetail(data.meals[0]))
+    .then(response => response.json())
+    .then(data => displayMealDetail(data.meals[0])) 
+    */
 }
 
 const displayMealDetail = meal =>
 {
     // console.log(meal);
     const singleMealDetails = document.getElementById('single-mealDetails');
+
     //Removing Previous Search -(It will work but not Reccomended)
     // singleMealDetails.innerHTML = '';
     singleMealDetails.textContent = '';
+
     const divDetail = document.createElement('div');
     divDetail.classList.add('card');
     divDetail.innerHTML =
