@@ -6,9 +6,9 @@ const searchFood = async () =>
 
   //Unknown Result Handling
   if (searchFieldText == '') {
-    searchField.value =
-      "Please type a dish name, cause you don't want to see all the dishes.";
+    alert("Please type a dish name, cause you don't want to see all the dishes.");
   } 
+   
   else 
   {
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchFieldText}`;
@@ -17,39 +17,57 @@ const searchFood = async () =>
     const res = await fetch(url);
     const data = await res.json();
     displaySearchedMeal(data.meals);
+   
+
   }
+  
 };
 
 ////////////////////////////////Operation
 const displaySearchedMeal =( meals => 
 {
-   
-  const searchedMeals = document.getElementById("searched-meals");
-  searchedMeals.textContent = '';
-    
-  meals.forEach( meal =>  
-   
-  {    
-    
-    console.log(meal.strTags);
-   
-      const div = document.createElement("div");
-      div.classList.add("col");
-      div.innerHTML = `
-        <div onclick="loadMealDetail(${meal.idMeal})" class="card">
-        <img style="cursor: pointer;" src="${
-          meal.strMealThumb
-        }" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 style="cursor: pointer;" class="card-title">${meal.strMeal}</h5>
-          <p class="card-text">${meal.strInstructions.slice(0, 100)}</p>
-        </div>
-        </div>
+    console.log(meals);
+    const searchedMeals = document.getElementById("searched-meals");
+    searchedMeals.textContent = '';
+    const noResult = document.getElementById('no-result');
 
-        `;
-      searchedMeals.appendChild(div); 
+   if(meals == null)
+   {
+     alert('Off ja bhai');
+        
+        /* const noResultDisplay = document.createElement('h1');
+        noResultDisplay.classList.add('no-result');
+        noResultDisplay.innerHTML =
+        `<h1>No Result Found</h1>`;
+        noResult.appendChild(noResultDisplay); */
+   }
+      
+  else
+  {
+    meals.forEach( meal =>  
+   
+      {    
+        
+        console.log(meal.strTags);
+       
+          const div = document.createElement("div");
+          div.classList.add("col");
+          div.innerHTML = `
+            <div onclick="loadMealDetail(${meal.idMeal})" class="card">
+            <img style="cursor: pointer;" src="${
+              meal.strMealThumb
+            }" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 style="cursor: pointer;" class="card-title">${meal.strMeal}</h5>
+              <p class="card-text">${meal.strInstructions.slice(0, 100)}</p>
+            </div>
+            </div>
     
-  });
+            `;
+          searchedMeals.appendChild(div); 
+        
+      });
+  }
   
 });
 
