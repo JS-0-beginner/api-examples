@@ -26,20 +26,22 @@ const searchFood = async () =>
 ////////////////////////////////Operation
 const displaySearchedMeal =( meals => 
 {
-    console.log(meals);
+    console.log(meals); 
     const searchedMeals = document.getElementById("searched-meals");
     searchedMeals.textContent = '';
     const noResult = document.getElementById('no-result');
+    noResult.textContent = '';
 
    if(meals == null)
    {
-     alert('Off ja bhai');
+        //alert('No Result Found');
+
         
-        /* const noResultDisplay = document.createElement('h1');
+        const noResultDisplay = document.createElement('h1');
         noResultDisplay.classList.add('no-result');
         noResultDisplay.innerHTML =
-        `<h1>No Result Found</h1>`;
-        noResult.appendChild(noResultDisplay); */
+        `<h1 style="font-size: 100px;" >No Result Found</h1>`;
+        noResult.appendChild(noResultDisplay);
    }
       
   else
