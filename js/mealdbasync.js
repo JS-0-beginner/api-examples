@@ -6,7 +6,8 @@ const searchFood = async () =>
 
   //Unknown Result Handling
   if (searchFieldText == '') {
-    alert("Please type a dish name, cause you don't want to see all the dishes.");
+    // alert("Please type a dish name, cause you don't want to see all the dishes.");
+    searchField.value = "Please type a dish name, cause you don't want to see all the dishes.";
   } 
    
   else 
