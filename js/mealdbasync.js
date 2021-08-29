@@ -19,13 +19,6 @@ const searchFood = async () =>
     const data = await res.json();
     displaySearchedMeal(data.meals);
 
-    /* 
-      fetch(url)
-    .then(response => response.json())
-  //.then(data => console.log(data))
-    .then(data => displaySearchedMeal(data.meals))
-    */   
-
     }
     
 
@@ -39,18 +32,26 @@ const displaySearchedMeal = meals =>
     // searchedMeals.innerHTML = '';
     searchedMeals.textContent = '';
 
-    /* 
+     
     //Unknown Result Handling
      
-    if(meals == 0)
+    //gorga
+
+    /* if(meal != meal.strMeal)
     {
-        
-    } 
-    */
+        const noResult = document.getElementById('no-result');
+        const noResultDisplay = document.createElement('h1');
+        noResultDisplay.classList.add('no-result');
+        noResultDisplay.innerHTML =
+        `<h1>No Result Found</h1>`;
+        noResult.appendChild(noResultDisplay);
+    }  */
+    
     
    
     meals.forEach( meal => 
     {
+
         // console.log(meal);
         const div = document.createElement('div');
         div.classList.add('col');
@@ -84,11 +85,7 @@ const loadMealDetail = async mealID =>
     const res = await fetch(url);
     const data = await res.json();
     displayMealDetail(data.meals[0]);
-    /*
-    fetch(url)
-    .then(response => response.json())
-    .then(data => displayMealDetail(data.meals[0])) 
-    */
+    
 }
 
 const displayMealDetail = meal =>
