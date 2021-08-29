@@ -1,107 +1,82 @@
-const searchFood = async () =>
+const searchFood = async () => 
 {
-    const searchField = document.getElementById('search-field');
-    const searchFieldText = searchField.value;
-    searchField.value = '';
+  const searchField = document.getElementById("search-field");
+  const searchFieldText = searchField.value;
+  searchField.value = '';
 
-    //Unknown Result Handling 
-    if(searchFieldText == '')
-    {
-      searchField.value = "Please type a dish name, cause you don't want to see all the dishes."
-    } 
-    
-    else
-    {
-      const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchFieldText}`;
-    
+  //Unknown Result Handling
+  if (searchFieldText == '') {
+    searchField.value =
+      "Please type a dish name, cause you don't want to see all the dishes.";
+  } 
+  else 
+  {
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchFieldText}`;
+
     //Regular Basic JS Form not ES6
     const res = await fetch(url);
     const data = await res.json();
     displaySearchedMeal(data.meals);
+  }
+};
 
-    }
-    
-
-}
-
-const displaySearchedMeal = meals =>
+////////////////////////////////Operation
+const displaySearchedMeal =( meals => 
 {
-    const searchedMeals = document.getElementById('searched-meals');
-
-    //Removing Previous Search -(It will work but not Reccomended)
-    // searchedMeals.innerHTML = '';
-    searchedMeals.textContent = '';
-
-     
-    //Unknown Result Handling
-     
-    //gorga
-
-    /* if(meal != meal.strMeal)
-    {
-        const noResult = document.getElementById('no-result');
-        const noResultDisplay = document.createElement('h1');
-        noResultDisplay.classList.add('no-result');
-        noResultDisplay.innerHTML =
-        `<h1>No Result Found</h1>`;
-        noResult.appendChild(noResultDisplay);
-    }  */
-    
-    
    
-    meals.forEach( meal => 
-    {
-
-        // console.log(meal);
-        const div = document.createElement('div');
-        div.classList.add('col');
-        div.innerHTML=
-        `
+  const searchedMeals = document.getElementById("searched-meals");
+  searchedMeals.textContent = '';
+    
+  meals.forEach( meal =>  
+   
+  {    
+    
+    console.log(meal.strTags);
+   
+      const div = document.createElement("div");
+      div.classList.add("col");
+      div.innerHTML = `
         <div onclick="loadMealDetail(${meal.idMeal})" class="card">
-        <img style="cursor: pointer;" src="${meal.strMealThumb}" class="card-img-top" alt="...">
+        <img style="cursor: pointer;" src="${
+          meal.strMealThumb
+        }" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 style="cursor: pointer;" class="card-title">${meal.strMeal}</h5>
           <p class="card-text">${meal.strInstructions.slice(0, 100)}</p>
         </div>
         </div>
 
-        `
-        searchedMeals.appendChild(div);
+        `;
+      searchedMeals.appendChild(div); 
+    
+  });
+  
+});
 
-    });
-}
+////////////////////////////////Operation
 
 //Async & Await
-const loadMealDetail = async mealID =>
-{
-    // console.log(mealID);
+const loadMealDetail = async (mealID) => {
+  // console.log(mealID);
 
-    const url = 
-    `
+  const url = `
     https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}
-    ` ;
+    `;
 
-    //Regular Basic JS Form not ES6
-    const res = await fetch(url);
-    const data = await res.json();
-    displayMealDetail(data.meals[0]);
-    
-}
+  //Regular Basic JS Form not ES6
+  const res = await fetch(url);
+  const data = await res.json();
+  displayMealDetail(data.meals[0]);
+};
 
-const displayMealDetail = meal =>
-{
-    // console.log(meal);
-    const singleMealDetails = document.getElementById('single-mealDetails');
+const displayMealDetail = (meal) => {
+  // console.log(meal);
+  const singleMealDetails = document.getElementById("single-mealDetails");
+  singleMealDetails.textContent = "";
 
-    //Removing Previous Search -(It will work but not Reccomended)
-    // singleMealDetails.innerHTML = '';
-    singleMealDetails.textContent = '';
-
-    const divDetail = document.createElement('div');
-    divDetail.classList.add('card');
-    divDetail.innerHTML =
-    
-    `
+  const divDetail = document.createElement("div");
+  divDetail.classList.add("card");
+  divDetail.innerHTML = `
     <img src="${meal.strMealThumb}" class="card-img-top" alt="...">
 
     <div class="card-body">
@@ -111,5 +86,5 @@ const displayMealDetail = meal =>
     </div>
 
     `;
-    singleMealDetails.appendChild(divDetail);
-}
+  singleMealDetails.appendChild(divDetail);
+};
