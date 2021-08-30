@@ -1,3 +1,4 @@
+// console.log("Let's order delicious food.");
 const searchFood = async () => 
 {
   const searchField = document.getElementById("search-field");
